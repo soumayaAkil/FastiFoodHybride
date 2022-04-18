@@ -1,6 +1,7 @@
 import 'package:fasti_food/Colors.dart';
 import 'package:fasti_food/produit/DetailMenu.dart';
 import 'package:flutter/material.dart';
+import 'package:fasti_food/Produit.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,11 +17,36 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
 
       ),
-      home:DetailMenu(),
+    //  home:DetailMenu(),
 
+
+
+      home: Page1(),
 
     );
   }
+}
+
+class Page1 extends StatelessWidget {
+  Widget build(BuildContext context){
+    return Scaffold(
+      appBar: AppBar(title:Text('List categories')),
+      body: Center(child: RaisedButton(
+        onPressed: (){
+          Navigator.of(context)
+              .push(
+            MaterialPageRoute(builder: (context) => ProduitScreen())
+          );
+
+        },
+        child: Text('Voir List des produits'),
+      )),
+
+      );
+
+
+  }
+
 }
 
 class MyHomePage extends StatefulWidget {
@@ -60,7 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        title: Text("Categories"),
       ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
