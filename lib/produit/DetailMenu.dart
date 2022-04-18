@@ -1,17 +1,54 @@
 
+import 'dart:convert';
+import 'package:flutter/cupertino.dart';
 import 'package:fasti_food/Colors.dart';
+import 'package:fasti_food/Models/produit.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class DetailMenu extends StatefulWidget {
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _DetailMenuState createState() => _DetailMenuState();
 }
 
-class _LoginScreenState extends State<DetailMenu> {
+class _DetailMenuState extends State<DetailMenu> {
+
+
+  List data = List();
+  Future myFuture;
+
+
+  Future<List<produit>> getData() async {
+    var url = 'http://10.0.2.2:5001/Produits/GetProdsByIdProd/1';
+    var response = await http.get(url);
+    var items = json.decode(response.body);
+print(items);
+    List<produit> lists = items.map<produit>((json) {
+
+      print(json);
+
+      return produit.formJson(json);
+    }).toList();
+    print(lists);
+    setState(() {
+      data = items;
+    });
+    print(lists);
+    return lists;
+  }
+
+
+  @override
+  void initState() {
+    super.initState();
+    getData();
+
+  }
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
@@ -33,7 +70,8 @@ class _LoginScreenState extends State<DetailMenu> {
 
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(30.30),
-                                child: Image.asset('images/coca.png',
+                                child:Image.network( "http://10.0.2.2:5001/images/${data[0]['image_produit']}",
+                                //Image.asset('assets/coca.png',
                                   width: 200, height: 200),
                                 //Image.asset('images/salha.png',width: 200,height: 200,),
                               ),
@@ -44,10 +82,10 @@ class _LoginScreenState extends State<DetailMenu> {
 
                             //  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: <Widget>[
-                                SizedBox(width:100),
+                                SizedBox(width:100,height: 50,),
                                 Text(
 
-                                      'coca',
+                                      '${ data[0]['nom_produit']}',
                                   // ':  ${som} dt',
                                   style: TextStyle(
                                     fontSize: 25,
@@ -57,7 +95,7 @@ class _LoginScreenState extends State<DetailMenu> {
                                 SizedBox(width:100),
                                 Text(
 
-                                     '1.5 l',
+                                     '${ data[0]['unite_produit']}',
                                  // ':  ${som} dt',
                                   style: TextStyle(
                                     fontSize: 25,
@@ -65,25 +103,28 @@ class _LoginScreenState extends State<DetailMenu> {
                                   ),
                                 ),
                               ]),
-                          SizedBox(height:100,width: 100,),
+
 
                           Row(
 
                             //  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: <Widget>[
+                                SizedBox(height:120,width: 100,),
                                 InkWell(
                                   child: Container(
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(20.0),
-                                      child: Image.asset('images/argon.jpg',
+                                      child:
+                                      Image.asset('assets/argon.jpg',
+
                                           width: 75, height: 75),
                                     ),
                                   ),
                                 ),
                                 Text(
 
-                                  '17 DT',
-                                  // ':  ${som} dt',
+                                  //'17 DT',
+                                   ':${ data[0]['prix_produit']} dt',
                                   style: TextStyle(
                                     fontSize: 25,
                                     color: orange,

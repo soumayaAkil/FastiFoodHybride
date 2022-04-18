@@ -31,7 +31,10 @@ class Page1 extends StatelessWidget {
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(title:Text('List categories')),
-      body: Center(child: RaisedButton(
+      body:Column(
+          children: [
+
+      Center(child: RaisedButton(
         onPressed: (){
           Navigator.of(context)
               .push(
@@ -40,7 +43,20 @@ class Page1 extends StatelessWidget {
 
         },
         child: Text('Voir List des produits'),
-      )),
+      )
+      ),
+            Center(child: RaisedButton(
+              onPressed: (){
+                Navigator.of(context)
+                    .push(
+                    MaterialPageRoute(builder: (context) => DetailMenu())
+                );
+
+              },
+              child: Text('Voir detail produit'),
+            )
+            ),
+  ],),
 
       );
 
