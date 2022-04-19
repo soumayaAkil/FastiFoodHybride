@@ -2,6 +2,7 @@ import 'package:fasti_food/Colors.dart';
 import 'package:fasti_food/produit/DetailMenu.dart';
 import 'package:flutter/material.dart';
 import 'package:fasti_food/Produit.dart';
+import 'package:fasti_food/restaurant/showAllRestau.dart';
 
 void main() {
   runApp(MyApp());
@@ -56,6 +57,18 @@ class Page1 extends StatelessWidget {
               child: Text('Voir detail produit'),
             )
             ),
+            Center(child: RaisedButton(
+              onPressed: (){
+                Navigator.of(context)
+                    .push(
+                    MaterialPageRoute(builder: (context) => DisplayRestau())
+                );
+
+              },
+              child: Text('Voir List restau'),
+            )
+            ),
+
   ],),
 
       );
