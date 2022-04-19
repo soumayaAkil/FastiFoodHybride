@@ -57,7 +57,7 @@ class _DisplayRestauState extends State<DisplayRestau>
     return Scaffold(
 
         appBar: AppBar(
-          title: Text('Display Restau'),
+          title: Text('List des Restaurans'),
           elevation: 0.0,
           backgroundColor: Color(0xFFEEA734),
         ),
@@ -82,13 +82,14 @@ class _DisplayRestauState extends State<DisplayRestau>
                   ), itemBuilder: (context, index)=>
                   Card(
 
-                      child : ListView(
+                      child : Column(
 
 
                         children: [
 
-                          Image.network("http://10.0.2.2:5001/images/${snapshot.data[index].logo}"),
-                          Title(color: Colors.black, child: Text(snapshot.data[index].designation))
+                          Image.network("http://10.0.2.2:5001/images/${snapshot.data[index].logo}",width: 150,height: 150),
+                          SizedBox(height:10),
+                          Title(color: Colors.black, child: Text(snapshot.data[index].designation,style: TextStyle(fontWeight: FontWeight. bold,fontSize: 15)))
                         ],
 
                       ),
