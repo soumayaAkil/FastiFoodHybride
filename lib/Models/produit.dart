@@ -7,7 +7,7 @@ class produit {
 
 
   int id_restau;
-  double prix_produit;
+  int prix_produit;
   String unite_produit;
 
   produit(this.id_produit,this.id_categorie,this.nom_produit, this.image_produit, this.id_restau,this.prix_produit,this.unite_produit);
@@ -31,6 +31,8 @@ class produit {
     'image_produit': pr.image_produit,
    // 'prix_prod': pr.prix_prod,
     'id_restau': pr.id_restau,
+  'prix_produit' : pr.prix_produit ,
+  'unite_produit' : pr.unite_produit,
 
   };
 }
