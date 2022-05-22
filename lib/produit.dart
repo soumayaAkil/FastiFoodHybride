@@ -25,7 +25,7 @@ class _ProduitScreenState extends State<ProduitScreen > {
     super.dispose();
   }
   Future<List> getData() async {
-    var myurl = "http://10.0.2.2:5001/Produits/GetProdsByIdCat/1";
+    var myurl = "http://10.0.2.2:5001/Produits/GetProdsByIdRestau/1";
     var response = await http.get(Uri.parse(myurl));
     var responsebody = jsonDecode(response.body);
     return responsebody;
@@ -43,12 +43,12 @@ class _ProduitScreenState extends State<ProduitScreen > {
         style: TextStyle(
           color: Colors.white,
           fontFamily: "Signatra",
-          fontSize: 50.0,
+          fontSize: 30.0,
         ),
         overflow: TextOverflow.ellipsis,
       ),
-      centerTitle: true,
-      backgroundColor: Color(0xff00c4cc),
+      centerTitle: false,
+      backgroundColor: Colors.orange,
     );
 
   }
@@ -84,10 +84,11 @@ class _ProduitScreenState extends State<ProduitScreen > {
           // Those are our background
           Container(
             height: 136,
+
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(22),
               color: index.isEven
-                  ? Color(0xff00c4cc)
+                  ? Color(0xFFFFA41B)
                   : Color(0xFFFFA41B),
               boxShadow: [kDefaultShadow],
             ),
@@ -108,10 +109,13 @@ class _ProduitScreenState extends State<ProduitScreen > {
               child: Container(
                   padding:
                   EdgeInsets.symmetric(horizontal: 20.0),
-                  height: 160,
+                  height: 200,
                   // image is square but we add extra 20 + 20 padding thats why width is 200
-                  width: 200,
-                  child:Image.network(
+                  width: 160,
+
+
+                  child:
+                  Image.network(
                       "http://10.0.2.2:5001/images/${snapshot.data[index]['image_produit']}"),
               ),
             ),
@@ -146,7 +150,7 @@ class _ProduitScreenState extends State<ProduitScreen > {
                       vertical: 20.0 / 4, // 5 top and bottom
                     ),
                     decoration: BoxDecoration(
-                      color: Color(0xff00c4cc),
+                      color: Color(0xFFFFA41B),
                       borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(22),
                         topRight: Radius.circular(22),
@@ -184,7 +188,7 @@ class _ProduitScreenState extends State<ProduitScreen > {
     return new MaterialApp(
         home: new Scaffold(
             appBar: headd(),
-            backgroundColor: Color(0x8000c4cc),
+            backgroundColor: Color(0xFFF5F5F5),
             body:bodyHome()
         ));
   }
