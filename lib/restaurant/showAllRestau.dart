@@ -87,7 +87,7 @@ class _DisplayRestauState extends State<DisplayRestau>
                   child:Card(
                       child : Column(
                         children: [
-                          Image.network("http://10.0.2.2:5001/images/${snapshot.data[index].logo}",width: 150,height: 150),
+                          Image.network("http://10.0.2.2:5001/images/${snapshot.data[index].logo}",width: 120,height: 120),
                           SizedBox(height:10),
                           Title(color: Colors.black, child: Text(snapshot.data[index].designation,style: TextStyle(fontWeight: FontWeight. bold,fontSize: 15))),
 
@@ -102,7 +102,8 @@ class _DisplayRestauState extends State<DisplayRestau>
                   Navigator.push(context, MaterialPageRoute(builder: (context) => DisplayProduit(id_restau:snapshot.data[index].id_restau)),);
               },
 
-              ));
+              )
+              );
 
 
             }
