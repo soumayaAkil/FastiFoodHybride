@@ -86,7 +86,7 @@ print(items);
                                 SizedBox(width:100,height: 50,),
                                 Text(
 
-                                      '${ data[0]['nom_produit']}',
+                                      '${ data[0]['nomProd']}',
                                   // ':  ${som} dt',
                                   style: TextStyle(
                                     fontSize: 25,
@@ -97,7 +97,7 @@ print(items);
 
                                 Text(
 
-                                     '${ data[0]['unite_produit']}',
+                                     '${ data[0]['unite']}',
                                  // ':  ${som} dt',
                                   style: TextStyle(
                                     fontSize: 25,
@@ -126,7 +126,7 @@ print(items);
                                 Text(
 
                                   //'17 DT',
-                                   ':${ data[0]['prix_produit']} dt',
+                                   ':${ data[0]['prix_prod']} dt',
                                   style: TextStyle(
                                     fontSize: 25,
                                     color: orange,
