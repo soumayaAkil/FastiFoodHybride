@@ -1,5 +1,6 @@
 import 'package:fasti_food/Colors.dart';
 import 'package:fasti_food/produit/DetailMenu.dart';
+import 'package:fasti_food/produit/showAllProduit.dart';
 import 'package:flutter/material.dart';
 import 'package:fasti_food/Produit.dart';
 import 'package:fasti_food/restaurant/showAllRestau.dart';
@@ -39,7 +40,7 @@ class Page1 extends StatelessWidget {
         onPressed: (){
           Navigator.of(context)
               .push(
-            MaterialPageRoute(builder: (context) => ProduitScreen())
+            MaterialPageRoute(builder: (context) => DisplayProduit())
           );
 
         },

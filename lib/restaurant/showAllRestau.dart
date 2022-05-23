@@ -6,6 +6,8 @@ import 'package:http/http.dart' as http;
 import 'package:fasti_food/Models/restau.dart';
 import 'package:flutter/foundation.dart';
 
+import '../produit/showAllProduit.dart';
+
 class DisplayRestau extends StatefulWidget
 {
   const DisplayRestau({Key key}) : super(key: key);
@@ -69,33 +71,39 @@ class _DisplayRestauState extends State<DisplayRestau>
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return Center(
                   child: CircularProgressIndicator(),
+
                 );
               }
               resizeToAvoidBottomInset: false;
               return GridView.builder(
 
                   itemCount: snapshot.data.length,
+
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                         crossAxisSpacing: 16,
                       mainAxisSpacing: 16
                   ), itemBuilder: (context, index)=>
-                  Card(
-
+                  InkWell(
+                  child:Card(
                       child : Column(
-
-
                         children: [
-
                           Image.network("http://10.0.2.2:5001/images/${snapshot.data[index].logo}",width: 150,height: 150),
                           SizedBox(height:10),
-                          Title(color: Colors.black, child: Text(snapshot.data[index].designation,style: TextStyle(fontWeight: FontWeight. bold,fontSize: 15)))
+                          Title(color: Colors.black, child: Text(snapshot.data[index].designation,style: TextStyle(fontWeight: FontWeight. bold,fontSize: 15))),
+
                         ],
+
 
                       ),
 
-                  )
-              );
+
+                  ),
+                  onTap:(){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => DisplayProduit(id_restau:snapshot.data[index].id_restau)),);
+              },
+
+              ));
 
 
             }
