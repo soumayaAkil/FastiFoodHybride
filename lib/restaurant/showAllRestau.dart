@@ -27,7 +27,7 @@ class _DisplayRestauState extends State<DisplayRestau>
 
     restau2.clear();
     restau.clear();
-    var response = await http.get(Uri.parse("http://10.0.2.2:5001/restaurant/GetAllRestaurants"));
+    var response = await http.get("http://10.0.2.2:5001/restaurant/GetAllRestaurants");
 
 
 
