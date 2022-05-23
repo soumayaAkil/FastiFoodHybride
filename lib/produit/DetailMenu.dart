@@ -18,23 +18,19 @@ class _DetailMenuState extends State<DetailMenu> {
   Future myFuture;
 
 
-  Future<List<produit>> getData() async {
+  Future<List> getData() async {
     var url = 'http://10.0.2.2:5001/Produits/GetProdsByIdProd/1';
     var response = await http.get(url);
     var items = json.decode(response.body);
 print(items);
-    List<produit> lists = items.map<produit>((json) {
 
-      print(json);
-
-      return produit.formJson(json);
-    }).toList();
-    print(lists);
     setState(() {
       data = items;
+      print("datttttttttttaa");
+      print(data);
     });
-    print(lists);
-    return lists;
+
+    return data;
   }
 
 
@@ -48,6 +44,7 @@ print(items);
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+
 
     return Scaffold(
       appBar: AppBar(
@@ -68,12 +65,16 @@ print(items);
                           InkWell(
                             onTap: () {},
 
-                              child: ClipRRect(
+                              child: ClipRRect (
                                 borderRadius: BorderRadius.circular(30.30),
-                                child:Image.network( "http://10.0.2.2:5001/images/${data[0]['image_produit']}",
-                                //Image.asset('assets/coca.png',
-                                  width: 200, height: 200),
+                                child:
+                                //Image.network( "http://10.0.2.2:5001/images/${data[0]['image_produit']}",
+                                Image.asset('assets/coca.png',
+                                  width: 200, height: 200
+
+                                ),
                                 //Image.asset('images/salha.png',width: 200,height: 200,),
+
                               ),
 
 
@@ -93,6 +94,7 @@ print(items);
                                   ),
                                 ),
                                 SizedBox(width:100),
+
                                 Text(
 
                                      '${ data[0]['unite_produit']}',
