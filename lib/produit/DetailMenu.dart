@@ -12,8 +12,6 @@ class DetailMenu extends StatefulWidget {
 }
 
 class _DetailMenuState extends State<DetailMenu> {
-
-
   List data = List();
   Future myFuture;
 
@@ -42,6 +40,7 @@ print(items);
   }
   @override
   Widget build(BuildContext context) {
+
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
 
@@ -54,115 +53,124 @@ print(items);
         backgroundColor: orange,
       ),
       backgroundColor: Colors.white,
-      body: SingleChildScrollView(
+      body:FutureBuilder(
+
+    builder: (context, AsyncSnapshot<List> snapshot) {
+      return
+      SingleChildScrollView(
 
 
-                    padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
 
-                    child: Material(
-                      child:Column(
-                        children: [
-                          InkWell(
-                            onTap: () {},
+        child: Material(
+          child: Column(
+            children: [
+              InkWell(
+                onTap: () {},
 
-                              child: ClipRRect (
-                                borderRadius: BorderRadius.circular(30.30),
-                                child:
-                                //Image.network( "http://10.0.2.2:5001/images/${data[0]['image_produit']}",
-                                Image.asset('assets/coca.png',
-                                  width: 200, height: 200
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(30.30),
+                  child:
+                  Image.network(
+                      "http://10.0.2.2:5001/images/${data[0]['imageProd']}",
+                      // Image.asset('assets/coca.png',
+                      width: 200, height: 200
 
-                                ),
-                                //Image.asset('images/salha.png',width: 200,height: 200,),
-
-                              ),
-
-
-                          ),
-                          Row(
-
-                            //  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: <Widget>[
-                                SizedBox(width:100,height: 50,),
-                                Text(
-
-                                      '${ data[0]['nomProd']}',
-                                  // ':  ${som} dt',
-                                  style: TextStyle(
-                                    fontSize: 25,
-                                    color: orange,
-                                  ),
-                                ),
-                                SizedBox(width:100),
-
-                                Text(
-
-                                     '${ data[0]['unite']}',
-                                 // ':  ${som} dt',
-                                  style: TextStyle(
-                                    fontSize: 25,
-                                    color: orange,
-                                  ),
-                                ),
-                              ]),
-
-
-                          Row(
-
-                            //  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: <Widget>[
-                                SizedBox(height:120,width: 100,),
-                                InkWell(
-                                  child: Container(
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(20.0),
-                                      child:
-                                      Image.asset('assets/argon.jpg',
-
-                                          width: 75, height: 75),
-                                    ),
-                                  ),
-                                ),
-                                Text(
-
-                                  //'17 DT',
-                                   ':${ data[0]['prix_prod']} dt',
-                                  style: TextStyle(
-                                    fontSize: 25,
-                                    color: orange,
-                                  ),
-                                ),
-                              ]),
-
-                          SizedBox(height:120),
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                primary: orange,
-
-                                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 0),
-                               ),
-                            onPressed: (){},
-                             child:TextButton(
-
-                               child:Text(
-                               ' Ajouter au panier',
-                               style: TextStyle(
-                                 fontSize: 23,
-                                 fontWeight: FontWeight.bold,
-                                 color: Colors.black,
-                               ),
-                             ),
+                  ),
+                  //Image.asset('images/salha.png',width: 200,height: 200,),
 
                 ),
-                          //color: Colors.grey[200],
-
-                         ),
 
 
-],
+              ),
+              Row(
+
+                //  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    SizedBox(width: 100, height: 50,),
+                    Text(
+
+                      '${ data[0]['nomProd']}',
+                      // ':  ${som} dt',
+                      style: TextStyle(
+                        fontSize: 25,
+                        color: orange,
+                      ),
+                    ),
+                    SizedBox(width: 100),
+
+                    Text(
+
+                      '${ data[0]['unite']}',
+                      // ':  ${som} dt',
+                      style: TextStyle(
+                        fontSize: 25,
+                        color: orange,
+                      ),
+                    ),
+                  ]),
+
+
+              Row(
+
+                //  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    SizedBox(height: 120, width: 100,),
+                    InkWell(
+                      child: Container(
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(20.0),
+                          child:
+                          Image.asset('assets/argon.jpg',
+
+                              width: 75, height: 75),
+                        ),
+                      ),
+                    ),
+                    Text(
+
+                      //'17 DT',
+                      ':${ data[0]['prix_prod']} dt',
+                      style: TextStyle(
+                        fontSize: 25,
+                        color: orange,
+                      ),
+                    ),
+                  ]),
+
+              SizedBox(height: 120),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: orange,
+
+                  padding: EdgeInsets.symmetric(horizontal: 30, vertical: 0),
+                ),
+                onPressed: () {},
+                child: TextButton(
+
+                  child: Text(
+                    ' Ajouter au panier',
+                    style: TextStyle(
+                      fontSize: 23,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
+                  ),
+
+                ),
+                //color: Colors.grey[200],
+
+              ),
+
+
+            ],
+          ),
+        ),
+      );
+
+    }
     ),
-    ),
-    ),
+
     );
 
   }

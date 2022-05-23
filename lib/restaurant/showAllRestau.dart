@@ -21,8 +21,7 @@ class _DisplayRestauState extends State<DisplayRestau>
 {
   List<Restau> restau = [];
   List<Restau> restau2 = [];
-
-  Future<List<Restau>> getAll() async
+   Future<List<Restau>> getAll() async
   {
 
     restau2.clear();
