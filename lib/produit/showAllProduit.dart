@@ -208,7 +208,7 @@ class _DisplayProduitState extends State<DisplayProduit>
                         context.read<PanierProvider>().addProduit(panierSelect);
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => Panier()),
+                          MaterialPageRoute(builder: (context) => Panier(id_restau:this.widget.id_restau)),
                           //Navigator.of(context).pop();
                         );
                       },
