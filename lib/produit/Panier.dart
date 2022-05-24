@@ -11,6 +11,9 @@ import 'PanierProvider.dart';
 
 
 class Panier extends StatefulWidget {
+  final int id_restau;
+
+  const Panier({Key key, @required this.id_restau}) : super(key: key);
   @override
   _PanierState createState() => _PanierState();
 }
@@ -205,9 +208,12 @@ class _PanierState extends State<Panier> {
                               // print('${element.selectedProduit.toJson(element.selectedProduit)}');
                               //var ligne=element.selectedProduit.toJson(element.selectedProduit);
                               Ajoutprod PROD=Ajoutprod();
-                              /*          var f= PROD.parseproduit(id_client,element.selectedProduit.id_prod,element.qte,element.somme,date,value.totale);
+
+
+                              var f= PROD.parseproduit(id_client,element.selectedProduit.id_prod,element.qte,widget.id_restau,value.totale);
+
                               Listproduction.add(f);
-*/
+
                             });
                             print(Listproduction);
                             saveProd(Listproduction);
@@ -284,7 +290,7 @@ class _PanierState extends State<Panier> {
 
   Future<dynamic> ajoutproduction(List<Map<String, dynamic>> prods) async {
 
-    var url = 'http://10.0.2.2:3000/production/post';
+    var url = 'http://10.0.2.2:5001/commandes/AddCommande';
 
     var response = await http.post(
       url,
@@ -297,27 +303,26 @@ class _PanierState extends State<Panier> {
 }
 
 class Ajoutprod{
-  int id_femme;
-  int id_produit;
+  int id_client;
+  int id_prod;
   int quantite;
-  int somme;
-  String date_transaction;
-
-  int somme_prix;
+  int id_restau;
+  double somme_com;
 
 
 
 
 
-  Ajoutprod({this.id_femme, this.id_produit ,this.quantite ,this.somme, this.date_transaction, this.somme_prix});
-  Map<String, dynamic> parseproduit(int id_femme, int id_P,int qte,double somme,String date,double somme_prix) =>
+  Ajoutprod({this.id_client, this.id_prod ,this.quantite ,this.id_restau, this.somme_com});
+
+  Map<String, dynamic> parseproduit(int id_client, int id_P,int qte,int id_restau,double somme_prix) =>
       {
-        "date_transaction":date,
         "quantite":qte,
         "id_produit":id_P,
-        "somme":somme,
-        "somme_prix":somme_prix,
-        "id":id_femme
+        "id_restau":id_restau,
+        "somme_com":somme_prix,
+        "id_client":id_client
       };
+
 
 }
