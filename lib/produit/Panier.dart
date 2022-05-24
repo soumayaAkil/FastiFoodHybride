@@ -181,9 +181,7 @@ class _PanierState extends State<Panier> {
                       ),
                     ),
                   ),
-                ),
-
-                Positioned(
+                ), Positioned(
                   bottom: 15,
                   left: 110,
                   child: Container(
@@ -207,7 +205,7 @@ class _PanierState extends State<Panier> {
                               // print('${element.selectedProduit.toJson(element.selectedProduit)}');
                               //var ligne=element.selectedProduit.toJson(element.selectedProduit);
                               Ajoutprod PROD=Ajoutprod();
-                    /*          var f= PROD.parseproduit(id_client,element.selectedProduit.id_prod,element.qte,element.somme,date,value.totale);
+                              /*          var f= PROD.parseproduit(id_client,element.selectedProduit.id_prod,element.qte,element.somme,date,value.totale);
                               Listproduction.add(f);
 */
                             });
@@ -258,6 +256,8 @@ class _PanierState extends State<Panier> {
                     ),
                   ),
                 ),
+
+
               ],
             );
           },
