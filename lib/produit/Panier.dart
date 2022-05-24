@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../Commande/Commande.dart';
 import '../Models/ModelPanierProd.dart';
 import 'PanierProvider.dart';
 
@@ -76,76 +77,7 @@ class _PanierState extends State<Panier> {
                                 fontWeight: FontWeight.bold),
                           ),
 
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: <Widget>[
-                              Container(
-                                child: RaisedButton(
-                                  color: Colors.orange,
-                                  onPressed: () {
-                                    /*
-                                    setState(() {
-                                      if (count > NBMin) {
-                                        count--;
-                                        som = count * prod.prix_prod;
-                                      }
-                                    });
-                                    */
-                                  },
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(25),
-                                  ),
-                                  child: Text(
-                                    "-",
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 25),
-                                  ),
-                                ),
-                              ),
-                              /*
-                          IconButton(
-                            icon: Icon(Icons.minimize),
-                            onPressed: () {
-                              setState(() {
-                                if (count > produit.nb_min) {
-                                  count--;
-                                }
-                              });
-                            },
-                          ),
-                          */
-                              Text(
-                                //'$count',
-                                '13',
-                                style: TextStyle(
-                                  fontSize: 25,
-                                  color: Colors.black,
-                                ),
-                              ),
-                              Container(
-                                child: RaisedButton(
-                                  color: Colors.orange,
-                                  onPressed: () {
-                                    /*
-                                    setState(() {
-                                      count++;
-                                      som = count * prod.prix_prod;
-                                    });
 
-                                     */
-                                  },
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(25),
-                                  ),
-                                  child: Text(
-                                    "+",
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 25),
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
                         ],
                       ),
                     ),
@@ -210,40 +142,20 @@ class _PanierState extends State<Panier> {
                               Ajoutprod PROD=Ajoutprod();
 
 
-                              var f= PROD.parseproduit(id_client,element.selectedProduit.id_prod,element.qte,widget.id_restau,value.totale);
+                              var f= PROD.parseproduit(1,element.selectedProduit.id_prod,element.qte,widget.id_restau,value.totale);
 
                               Listproduction.add(f);
 
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => MyHomePage()),
+                                //Navigator.of(context).pop();
+                              );
                             });
                             print(Listproduction);
-                            saveProd(Listproduction);
-                            // print(prods);
-                            ajoutproduction(prods);
-                            //getprefQ() async{
-/*
-                          SharedPreferences preferences =
-                          await SharedPreferences.getInstance();
-                          quantite = preferences.getInt("quantite");
+                            ajoutproduction(Listproduction);
 
-                          if (quantite != 0) {
-                            setState(() {
-                              quantite = preferences.getInt("quantite");
-                              isSelectIn = true;
-                            });
-                          }
-                          */
-                            /*
-                          DateFormat dateFormat = DateFormat("yyyy-MM-dd HH:mm:ss");
-                          var x = dateFormat.format(DateTime.now());
 
-                          print(produit.id);
-
-                          print(quantite);
-                          SharedPreferences preff = await SharedPreferences.getInstance();
-                          int id_femme = preferences.getInt("userId");
-                          print(id_femme);
-                          saveProd(x, quantite, widget.id_produit, id_femme);
-                          */
                           },
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(25),
@@ -291,7 +203,7 @@ class _PanierState extends State<Panier> {
   Future<dynamic> ajoutproduction(List<Map<String, dynamic>> prods) async {
 
     var url = 'http://10.0.2.2:5001/commandes/AddCommande';
-
+    debugPrint('tableau prods : $prods');
     var response = await http.post(
       url,
       body: json.encode(prods),
