@@ -42,11 +42,13 @@ class _PanierState extends State<Panier> {
                     PanierProduit produit = value.produits[index];
 
 
-                    return Container(
-                      height: 50,
-                      color: Colors.orange,
+                    return    ClipRRect(
+                      borderRadius: BorderRadius.circular(20.0),
+                      child:Container(
+                      height: 80,
+                      color: Colors.black26 ,
                       padding: EdgeInsets.symmetric(horizontal: 15),
-                      margin: EdgeInsets.only(bottom: 10),
+                      margin: EdgeInsets.only(top: 10,left: 10,right: 10),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
@@ -56,7 +58,7 @@ class _PanierState extends State<Panier> {
                           ),
                           Container(
                             child: ClipRRect(
-                              // borderRadius: BorderRadius.circular(30.30),
+                              borderRadius: BorderRadius.circular(15.0),
                               child: Image.network("http://10.0.2.2:5001/images/${produit.selectedProduit.imageProd}",
                                 fit: BoxFit.cover,
                               ),
@@ -70,8 +72,80 @@ class _PanierState extends State<Panier> {
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold),
                           ),
+
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: <Widget>[
+                              Container(
+                                child: RaisedButton(
+                                  color: Colors.orange,
+                                  onPressed: () {
+                                    /*
+                                    setState(() {
+                                      if (count > NBMin) {
+                                        count--;
+                                        som = count * prod.prix_prod;
+                                      }
+                                    });
+                                    */
+                                  },
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(25),
+                                  ),
+                                  child: Text(
+                                    "-",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 25),
+                                  ),
+                                ),
+                              ),
+                              /*
+                          IconButton(
+                            icon: Icon(Icons.minimize),
+                            onPressed: () {
+                              setState(() {
+                                if (count > produit.nb_min) {
+                                  count--;
+                                }
+                              });
+                            },
+                          ),
+                          */
+                              Text(
+                                //'$count',
+                                '13',
+                                style: TextStyle(
+                                  fontSize: 25,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              Container(
+                                child: RaisedButton(
+                                  color: Colors.orange,
+                                  onPressed: () {
+                                    /*
+                                    setState(() {
+                                      count++;
+                                      som = count * prod.prix_prod;
+                                    });
+
+                                     */
+                                  },
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(25),
+                                  ),
+                                  child: Text(
+                                    "+",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 25),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
                         ],
                       ),
+                    ),
                     );
                   },
 
@@ -81,12 +155,12 @@ class _PanierState extends State<Panier> {
                   bottom: 15,
                   child: Container(
                     height: height * 0.1,
-                    width: width,
+                    width: width * 0.5 ,
                     padding: EdgeInsets.symmetric(horizontal: 10),
                     child: Center(
                       child: Container(
-                        height: height * 0.1,
-                        width: width,
+                        height: height * 0.2,
+                        width: width * 0.5,
                         child: RaisedButton(
                           color: Colors.brown[400],
                           onPressed: () => {
@@ -110,15 +184,16 @@ class _PanierState extends State<Panier> {
                 ),
 
                 Positioned(
-                  bottom: 90,
+                  bottom: 15,
+                  left: 110,
                   child: Container(
                     height: height * 0.1,
-                    width: width,
+                    width: width * 0.9,
                     padding: EdgeInsets.symmetric(horizontal: 10),
                     child: Center(
                       child: Container(
-                        height: height * 0.1,
-                        width: width,
+                        height: height * 0.2,
+                        width: width * 0.5,
                         child: RaisedButton(
                           color: Colors.orange,
                           onPressed: () async {
